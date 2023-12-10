@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = adapter
 
         TabLayoutMediator(tabLayout, viewPager, TabLayoutMediator.TabConfigurationStrategy { tab, position ->
-            val tabNames = listOf("Demographics", "Dashboard", "Job success failure ratio", "Salary Insights")
+            val tabNames = listOf("Dashboard", "Demographics", "Job success failure ratio", "Salary Insights")
             tab.text = tabNames[position]
         }).attach()
 

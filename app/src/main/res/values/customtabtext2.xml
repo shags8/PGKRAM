@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyCustomTabTextAppearance2" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:textSize">13sp</item>
+        <item name="android:cropToPadding">true</item>
+        <item name="android:scaleType">center</item>
+    </style>
+</resources>

@@ -16,7 +16,7 @@ class FragmentAdpterMain(fm: FragmentActivity):FragmentStateAdapter(fm){
 
         override fun createFragment(position: Int): Fragment {
             return when (position) {
-                0 -> return Demographics()
+                0 -> return DashBoard()
                 1 -> return Demographics()
                 2 -> return Demographics()
                 3 -> return Demographics() // Add additional fragment for tab 4
