@@ -18,7 +18,7 @@ class FragmentAdpterMain(fm: FragmentActivity):FragmentStateAdapter(fm){
             return when (position) {
                 0 -> return DashBoard()
                 1 -> return Demographics()
-                2 -> return Demographics()
+                2 -> return SuccessRatio()
                 3 -> return Demographics() // Add additional fragment for tab 4
                 else -> return Demographics()
             }

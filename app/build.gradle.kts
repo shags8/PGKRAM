@@ -54,4 +54,7 @@ dependencies {
     implementation ("androidx.viewpager2:viewpager2:1.0.0")      // tabs
     implementation ("com.google.android.material:material:1.4.0")
 
+
+    // Charts
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 }
