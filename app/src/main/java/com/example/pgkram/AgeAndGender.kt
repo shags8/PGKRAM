@@ -1,5 +1,6 @@
 package com.example.pgkram
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -33,20 +34,74 @@ class AgeAndGender : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val chartData = ArrayList<BarEntry>()
-            chartData.add(BarEntry(1f, 1f))
-            chartData.add(BarEntry(2f,0.33f))
-            chartData.add(BarEntry(3f, 0.7f))
-            chartData.add(BarEntry(4f, 0.5f))
-            chartData.add(BarEntry(5f, 0.4f))
-            chartData.add(BarEntry(6f, 0.25f))
+        graph1()
+        graph2()
 
+
+
+    }
+
+    fun graph2(){
+
+        val chartData = ArrayList<BarEntry>()
+        chartData.add(BarEntry(1f, 0.865f))
+        chartData.add(BarEntry(2f,0.150f))
+
+        val barDataSet = BarDataSet(chartData, "GENDER")
+        barDataSet.color = Color.parseColor("#994329EA")
+        barDataSet.isHighlightEnabled
+        barDataSet.highLightColor = Color.parseColor("#4329EA")
+        barDataSet.valueTextSize = 0.0f
+
+        val barData = BarData(barDataSet)
+        barData.barWidth = 0.38f
+        binding.chart2.setFitBars(true)
+        binding.chart2.invalidate()
+
+
+        val xAxis: XAxis = binding.chart2.xAxis
+        xAxis.position = XAxisPosition.BOTTOM
+        xAxis.textSize = 10f
+        xAxis.labelCount =2
+        xAxis.textColor = Color.BLACK
+        xAxis.setDrawAxisLine(true)
+        xAxis.setDrawGridLines(false)
+        xAxis.valueFormatter=MyXAxis2Formatter()
+
+        val left: YAxis = binding.chart2.getAxisLeft()
+        val rightAxis: YAxis = binding.chart2.axisRight
+        rightAxis.isEnabled = false
+        left.labelCount = 3
+        left.axisMaximum = 1f
+        left.axisMinimum=0f
+        left.granularity=0.25f
+        left.isForceLabelsEnabled
+        left.valueFormatter = MyYAxisFormatter()
+
+        binding.chart2.description.text = ""
+        binding.chart2.data = barData
+        binding.chart2.animateXY(1000,1000)
+
+
+    }
+    fun graph1()
+    {
+        val chartData = ArrayList<BarEntry>()
+        chartData.add(BarEntry(1f, 1f))
+        chartData.add(BarEntry(2f,0.33f))
+        chartData.add(BarEntry(3f, 0.72f))
+        chartData.add(BarEntry(4f, 0.8f))
+        chartData.add(BarEntry(5f, 0.4f))
+        chartData.add(BarEntry(6f, 0.25f))
 
         val barDataSet = BarDataSet(chartData, "AGE")
         barDataSet.color = Color.parseColor("#994329EA")
+        barDataSet.isHighlightEnabled
+        barDataSet.highLightColor = Color.parseColor("#4329EA")
         barDataSet.valueTextSize = 0.0f
 
         val barData = BarData(barDataSet)
@@ -71,19 +126,9 @@ class AgeAndGender : Fragment() {
         left.isForceLabelsEnabled
 
 
+        binding.chart2.description.text = ""
         binding.chart1.data = barData
         binding.chart1.animateXY(1000,1000)
-
-
-//        val chartData: MutableList<dataclassAge> = mutableListOf(
-//            dataclassAge("18-24", 35.5),
-//            dataclassAge("25-34", 42.1),
-//            dataclassAge("35-44", 18.7),
-//            dataclassAge("45-54", 3.2),
-//            dataclassAge("55+", 0.5)
-//        )
-
-
 
     }
 

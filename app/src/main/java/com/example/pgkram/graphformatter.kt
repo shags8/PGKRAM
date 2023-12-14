@@ -1,7 +1,10 @@
 package com.example.pgkram
 
 import com.github.mikephil.charting.components.AxisBase
+import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 
 class MyXAxisFormatter : ValueFormatter() {
 
@@ -22,6 +25,21 @@ class MyXAxisFormatter : ValueFormatter() {
     }
 }
 
+class MyXAxis2Formatter : ValueFormatter() {
+
+    private val days = listOf("BOYS", "GIRLS")
+
+    override fun getAxisLabel(value: Float, axis: AxisBase?): String {
+
+        return when (value) {
+            1.0f -> days[0]
+            2.0f -> days[1]
+            else -> days.getOrNull(value.toInt()) ?: value.toString()
+        }
+        // return days.getOrNull(value.toInt()) ?: value.toString()
+    }
+}
+
 class MyYAxisFormatter : ValueFormatter() {
 
     private val days = listOf("0%", "25%", "50%", "100%")
@@ -29,4 +47,15 @@ class MyYAxisFormatter : ValueFormatter() {
     override fun getAxisLabel(value: Float, axis: AxisBase?): String? {
         return String.format("%d%%", (value * 100).toInt())
     }
+}
+
+class MyChartListener : OnChartValueSelectedListener {
+    override fun onValueSelected(e: Entry?, h: Highlight?) {
+
+    }
+
+    override fun onNothingSelected() {
+        TODO("Not yet implemented")
+    }
+
 }
