@@ -79,6 +79,21 @@ class MyYAxis2Formatter : ValueFormatter() {
         return String.format("%.0f", value * 1000)
     }
 }
+class LineFormatter : ValueFormatter() {
+
+    private val days = listOf("SEP 7,2023", "SEP 8,2023", "SEP 25,2023", "OCT 2,2023", "OCT 20,2023")
+
+    override fun getAxisLabel(value: Float, axis: AxisBase?): String? {
+        return when (value) {
+            1.0f -> days[0]
+            2.0f -> days[1]
+            3.0f -> days[2]
+            4.0f -> days[3]
+            5.0f -> days[4]
+            else -> days.getOrNull(value.toInt()) ?: value.toString()
+        }
+    }
+}
 
 
 

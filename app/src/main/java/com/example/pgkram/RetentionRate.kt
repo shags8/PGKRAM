@@ -36,6 +36,9 @@ class RetentionRate : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        graph1()
+        graph2()
     }
 
     fun graph1(){
@@ -46,45 +49,94 @@ class RetentionRate : Fragment() {
         xValues.add("SEP 21,2023")
 
         val yValues = ArrayList<Entry>()
-        yValues.add(Entry(0f, 5000f))
-        yValues.add(Entry(1f, 4000f))
-        yValues.add(Entry(2f, 3000f))
+        yValues.add(Entry(1f, 0.22f))
+        yValues.add(Entry(2f, 0.34f))
+        yValues.add(Entry(3f, 0.30f))
+        yValues.add(Entry(4f, 0.42f))
+        yValues.add(Entry(5f, 0.15f))
 
         val lineDataSet = LineDataSet(yValues, "Returning Users")
 
-        lineDataSet.lineWidth = 4f
+        lineDataSet.lineWidth = 2.5f
+        lineDataSet.setDrawCircles(false)
         lineDataSet.color = Color.parseColor("#4285F4")
-        lineDataSet.circleRadius = 6f
-        lineDataSet.valueTextSize = 12f
+        lineDataSet.valueTextSize = 0.0f
         lineDataSet.valueTextColor = Color.BLACK
 
         val lineData = LineData(lineDataSet)
         binding.chart5.data = lineData
 
+
         val xAxis: XAxis = binding.chart5.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.textSize = 10f
+        xAxis.textSize = 9f
         xAxis.textColor = Color.BLACK
+        xAxis.labelRotationAngle = 50F
+        xAxis.labelCount=5
+        xAxis.isForceLabelsEnabled
         xAxis.setDrawAxisLine(true)
         xAxis.setDrawGridLines(false)
-        xAxis.valueFormatter = object : ValueFormatter() {
-            override fun getFormattedValue(
-                value: Float,
-                entry: Entry?,
-                dataSetIndex: Int,
-                viewPortHandler: ViewPortHandler?
-            ): String? {
-                return xValues[value.toInt()]
-            }
-        }
+        xAxis.valueFormatter = LineFormatter()
 
         val left: YAxis = binding.chart5.axisLeft
         val rightAxis: YAxis = binding.chart5.axisRight
         rightAxis.isEnabled = false
+        left.setDrawGridLines(false)
+        left.valueFormatter = MyYAxis2Formatter()
         left.axisMinimum = 0f
-        left.axisMaximum = 5000f
+        left.axisMaximum = 1f
         binding.chart5.animateY(1000)
+        binding.chart5.description.text = ""
 
+
+    }
+
+    fun graph2(){
+
+        val xValues = ArrayList<String>()
+        xValues.add("SEP 7,2023")
+        xValues.add("SEP 14,2023")
+        xValues.add("SEP 21,2023")
+
+        val yValues = ArrayList<Entry>()
+        yValues.add(Entry(1f, 0.22f))
+        yValues.add(Entry(2f, 0.74f))
+        yValues.add(Entry(3f, 0.50f))
+        yValues.add(Entry(4f, 0.82f))
+        yValues.add(Entry(5f, 0.15f))
+
+        val lineDataSet = LineDataSet(yValues, "New Users")
+
+        lineDataSet.lineWidth = 2.5f
+        lineDataSet.setDrawCircles(false)
+        lineDataSet.color = Color.parseColor("#4285F4")
+        lineDataSet.valueTextSize = 0.0f
+        lineDataSet.valueTextColor = Color.BLACK
+
+        val lineData = LineData(lineDataSet)
+        binding.chart6.data = lineData
+
+
+        val xAxis: XAxis = binding.chart6.xAxis
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.textSize = 9f
+        xAxis.textColor = Color.BLACK
+        xAxis.labelRotationAngle = 50F
+        xAxis.labelCount=5
+        xAxis.isForceLabelsEnabled
+        xAxis.setDrawAxisLine(true)
+        xAxis.setDrawGridLines(false)
+        xAxis.valueFormatter = LineFormatter()
+
+        val left: YAxis = binding.chart6.axisLeft
+        val rightAxis: YAxis = binding.chart6.axisRight
+        rightAxis.isEnabled = false
+        left.setDrawGridLines(false)
+        left.valueFormatter = MyYAxis2Formatter()
+        left.axisMinimum = 0f
+        left.axisMaximum = 1f
+        binding.chart6.animateY(1000)
+        binding.chart6.description.text = ""
 
     }
 
