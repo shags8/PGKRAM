@@ -109,7 +109,7 @@ class SuccessRatio : Fragment() {
         chartData.add(BarEntry(12f, 0.35f))
 
 
-        val barDataSet = BarDataSet(chartData, "SUCCESS")
+        val barDataSet = BarDataSet(chartData, "FAILURE")
         barDataSet.color = Color.parseColor("#80ED9017")
         barDataSet.isHighlightEnabled
         barDataSet.highLightColor = Color.parseColor("#ED9017")
