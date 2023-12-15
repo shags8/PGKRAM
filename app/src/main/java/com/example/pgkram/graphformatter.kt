@@ -49,13 +49,34 @@ class MyYAxisFormatter : ValueFormatter() {
     }
 }
 
-class MyChartListener : OnChartValueSelectedListener {
-    override fun onValueSelected(e: Entry?, h: Highlight?) {
+class MyXAxis3Formatter : ValueFormatter() {
 
+    private val days = arrayOf("Jan", "Feb", "Mar","Apr","May","Jun", "Jul", "Aug", "Sep", "Oct","Nov","Dec")
+    override fun getAxisLabel(value: Float, axis: AxisBase?): String {
+
+        return when (value) {
+            1.0f -> days[0]
+            2.0f -> days[1]
+            3.0f -> days[2]
+            4.0f -> days[3]
+            5.0f -> days[4]
+            6.0f -> days[5]
+            7.0f -> days[6]
+            8.0f -> days[7]
+            9.0f -> days[8]
+            10.0f -> days[9]
+            11.0f -> days[10]
+            12.0f -> days[11]
+            else -> days.getOrNull(value.toInt()) ?: value.toString()
+        }
     }
-
-    override fun onNothingSelected() {
-        TODO("Not yet implemented")
-    }
-
 }
+class MyYAxis2Formatter : ValueFormatter() {
+
+    private val days = listOf("0%", "25%", "50%", "100%")
+
+    override fun getAxisLabel(value: Float, axis: AxisBase?): String? {
+        return String.format("%.0f", value * 1000)
+    }
+}
+

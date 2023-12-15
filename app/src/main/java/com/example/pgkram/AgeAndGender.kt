@@ -48,8 +48,8 @@ class AgeAndGender : Fragment() {
     fun graph2(){
 
         val chartData = ArrayList<BarEntry>()
-        chartData.add(BarEntry(1f, 0.865f))
-        chartData.add(BarEntry(2f,0.150f))
+        chartData.add(BarEntry(1f, 0.665f))
+        chartData.add(BarEntry(2f,0.350f))
 
         val barDataSet = BarDataSet(chartData, "GENDER")
         barDataSet.color = Color.parseColor("#994329EA")
@@ -68,7 +68,6 @@ class AgeAndGender : Fragment() {
         xAxis.textSize = 10f
         xAxis.labelCount =2
         xAxis.textColor = Color.BLACK
-        xAxis.setDrawAxisLine(true)
         xAxis.setDrawGridLines(false)
         xAxis.valueFormatter=MyXAxis2Formatter()
 
@@ -114,7 +113,6 @@ class AgeAndGender : Fragment() {
         xAxis.position = XAxisPosition.BOTTOM
         xAxis.textSize = 10f
         xAxis.textColor = Color.BLACK
-        xAxis.setDrawAxisLine(true)
         xAxis.setDrawGridLines(false)
         xAxis.valueFormatter=MyXAxisFormatter()
 
@@ -126,7 +124,7 @@ class AgeAndGender : Fragment() {
         left.isForceLabelsEnabled
 
 
-        binding.chart2.description.text = ""
+        binding.chart1.description.text = ""
         binding.chart1.data = barData
         binding.chart1.animateXY(1000,1000)
 
