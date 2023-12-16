@@ -3,6 +3,7 @@ package com.example.pgkram
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +44,13 @@ class AgeAndGender : Fragment() {
 
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("MPChartDebug", "Clicked outside of data points")
+        graph1()
+        graph2()
     }
 
     fun graph2(){

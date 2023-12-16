@@ -1,32 +1,30 @@
 package com.example.pgkram
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.pgkram.databinding.FragmentAgeAndGenderBinding
+import com.example.pgkram.databinding.FragmentLocationBinding
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.YAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
 
 // TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Location.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Location : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
+
+    lateinit var _binding: FragmentLocationBinding
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -34,26 +32,53 @@ class Location : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_location, container, false)
+        //return inflater.inflate(R.layout.fragment_location, container, false)
+        _binding= FragmentLocationBinding.inflate(inflater, container, false)
+        return binding.root
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Location.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Location().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val chartView = binding.chartView
+
+        val chartData = ArrayList<BarEntry>()
+        chartData.add(BarEntry(1f, 0.125f))
+        chartData.add(BarEntry(2f,0.230f))
+        chartData.add(BarEntry(3f,0.300f))
+        chartData.add(BarEntry(4f,0.360f))
+
+        val barDataSet = BarDataSet(chartData, "GENDER")
+        barDataSet.color = Color.parseColor("#994329EA")
+        barDataSet.isHighlightEnabled
+        barDataSet.highLightColor = Color.parseColor("#4329EA")
+        barDataSet.valueTextSize = 0.0f
+
+        val barData = BarData(barDataSet)
+        barData.barWidth = 0.2f
+        chartView.setFitBars(true)
+        chartView.invalidate()
+
+        val xAxis: XAxis = chartView.xAxis
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.textSize = 15f
+        xAxis.labelCount =4
+        xAxis.textColor = Color.BLACK
+        xAxis.setDrawAxisLine(false)
+        xAxis.setDrawGridLines(false)
+        xAxis.valueFormatter=MyXAxis4Formatter()
+
+        val left: YAxis = chartView.getAxisLeft()
+        val rightAxis: YAxis = chartView.axisRight
+        left.axisMinimum = -0.2f
+        rightAxis.isEnabled = false
+        left.isEnabled = false
+
+        chartView.description.text = ""
+        chartView.data = barData
+        chartView.animateXY(1000,1000)
+
     }
+
 }

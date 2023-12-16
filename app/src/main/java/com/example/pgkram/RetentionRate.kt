@@ -2,6 +2,7 @@ package com.example.pgkram
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,13 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.github.mikephil.charting.utils.ViewPortHandler
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
+import com.google.firebase.analytics.logEvent
 import java.util.Calendar
 
 
@@ -23,20 +30,29 @@ class RetentionRate : Fragment() {
 
     lateinit var _binding : FragmentRetentionRateBinding
     private val binding get() = _binding!!
+
+    private lateinit var analytics: FirebaseAnalytics
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_retention_rate, container, false)
-
         _binding= FragmentRetentionRateBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        graph1()
+        graph2()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("MPChartDebug1", "Clicked outside of data points")
         graph1()
         graph2()
     }
@@ -86,8 +102,7 @@ class RetentionRate : Fragment() {
         left.axisMinimum = 0f
         left.axisMaximum = 1f
         binding.chart5.animateY(1000)
-        binding.chart5.description.text = ""
-
+        binding.chart5.description.isEnabled = false
 
     }
 

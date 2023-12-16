@@ -95,5 +95,22 @@ class LineFormatter : ValueFormatter() {
     }
 }
 
+class MyXAxis4Formatter : ValueFormatter() {
+
+    private val days = listOf("Amritsar", "Jalandhar","Bathinda","Kapulthas")
+
+    override fun getAxisLabel(value: Float, axis: AxisBase?): String {
+
+        return when (value) {
+            1.0f -> days[3]
+            2.0f -> days[2]
+            3.0f -> days[1]
+            4.0f -> days[0]
+            else -> days.getOrNull(value.toInt()) ?: value.toString()
+        }
+        // return days.getOrNull(value.toInt()) ?: value.toString()
+    }
+}
+
 
 

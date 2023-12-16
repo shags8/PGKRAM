@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Location">
+    tools:context=".Location"
+    android:orientation="vertical"
+    android:padding="5dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.github.mikephil.charting.charts.HorizontalBarChart
+        android:id="@+id/chartView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="LOCATION" />
+        android:layout_height="wrap_content"
+        android:minHeight="200dp" />
 
-</FrameLayout>
+
+</LinearLayout>
