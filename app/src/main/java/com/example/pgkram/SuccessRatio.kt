@@ -13,11 +13,15 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
 
 class SuccessRatio : Fragment() {
 
     lateinit var _binding :FragmentSuccessRatioBinding
     private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -29,6 +33,7 @@ class SuccessRatio : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_success_ratio, container, false)
+
         _binding= FragmentSuccessRatioBinding.inflate(inflater, container, false)
         return binding.root
     }

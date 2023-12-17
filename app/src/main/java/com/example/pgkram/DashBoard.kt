@@ -10,11 +10,16 @@ import com.example.pgkram.databinding.FragmentDashBoardBinding
 import com.example.pgkram.databinding.FragmentDemographicsBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
 
 class DashBoard : Fragment() {
 
     lateinit var _binding: FragmentDashBoardBinding
     private val binding get() = _binding!!
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

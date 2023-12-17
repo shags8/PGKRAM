@@ -6,7 +6,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 class FragmentAdpterDemo(fm: Fragment): FragmentStateAdapter(fm) {
 
     override fun getItemCount(): Int {
-        return 2
+        return 3
     }// Number of tabs
 
     override fun createFragment(position: Int): Fragment {

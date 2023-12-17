@@ -26,8 +26,6 @@ class AgeAndGender : Fragment() {
 
     lateinit var _binding: FragmentAgeAndGenderBinding
     private val binding get() = _binding!!
-
-    private lateinit var analytics: FirebaseAnalytics
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,7 +43,7 @@ class AgeAndGender : Fragment() {
 
         graph1()
         graph2()
-        analytics = Firebase.analytics
+
 
 
 
