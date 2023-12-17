@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Traffic"
-    android:orientation="vertical">
+    tools:context=".DeviceType"
+    android:orientation="vertical"
+    android:padding="5dp">
 
-    <com.github.mikephil.charting.charts.HorizontalBarChart
-        android:id="@+id/chartView"
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/chart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="200dp" />

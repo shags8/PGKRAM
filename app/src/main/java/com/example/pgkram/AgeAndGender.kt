@@ -3,7 +3,6 @@ package com.example.pgkram
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,10 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import java.math.BigDecimal
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
+
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,6 +26,8 @@ class AgeAndGender : Fragment() {
 
     lateinit var _binding: FragmentAgeAndGenderBinding
     private val binding get() = _binding!!
+
+    private lateinit var analytics: FirebaseAnalytics
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,16 +45,10 @@ class AgeAndGender : Fragment() {
 
         graph1()
         graph2()
+        analytics = Firebase.analytics
 
 
 
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("MPChartDebug", "Clicked outside of data points")
-        graph1()
-        graph2()
     }
 
     fun graph2(){

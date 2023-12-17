@@ -35,7 +35,7 @@ class Demographics : Fragment() {
 
         // Setup TabLayout
         TabLayoutMediator(binding.t2,viewPager, TabLayoutMediator.TabConfigurationStrategy { tab, position ->
-            val tabNames = listOf("Age& Gender", "Location",)
+            val tabNames = listOf("Age& Gender", "Location","Device")
             tab.text = tabNames[position]
         }).attach()
     }

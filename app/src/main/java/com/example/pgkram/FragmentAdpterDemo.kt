@@ -13,6 +13,7 @@ class FragmentAdpterDemo(fm: Fragment): FragmentStateAdapter(fm) {
         return when (position) {
             0 -> return AgeAndGender()
             1 -> return Location()
+            2-> return DeviceType()
             else -> return AgeAndGender()
         }
 

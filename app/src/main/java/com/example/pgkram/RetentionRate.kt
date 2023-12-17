@@ -31,7 +31,6 @@ class RetentionRate : Fragment() {
     lateinit var _binding : FragmentRetentionRateBinding
     private val binding get() = _binding!!
 
-    private lateinit var analytics: FirebaseAnalytics
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,7 +51,6 @@ class RetentionRate : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        Log.d("MPChartDebug1", "Clicked outside of data points")
         graph1()
         graph2()
     }
