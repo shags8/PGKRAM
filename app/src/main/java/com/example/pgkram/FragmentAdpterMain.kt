@@ -19,7 +19,7 @@ class FragmentAdpterMain(fm: FragmentActivity):FragmentStateAdapter(fm){
                 0 -> return DashBoard()
                 1 -> return Demographics()
                 2 -> return SuccessRatio()
-                3 -> return Demographics() // Add additional fragment for tab 4
+                3 -> return SalaryInsights() // Add additional fragment for tab 4
                 else -> return Demographics()
             }
 
