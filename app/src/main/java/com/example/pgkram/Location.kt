@@ -2,6 +2,7 @@ package com.example.pgkram
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.getValue
 
 // TODO: Rename parameter arguments, choose names that match
 
@@ -22,6 +25,9 @@ class Location : Fragment() {
 
     lateinit var _binding: FragmentLocationBinding
     private val binding get() = _binding!!
+
+    private val database = FirebaseDatabase.getInstance()
+    private val genderRef = database.getReference("Location")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,43 +47,64 @@ class Location : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val chartView = binding.chartView
 
-        val chartData = ArrayList<BarEntry>()
-        chartData.add(BarEntry(1f, 0.125f))
-        chartData.add(BarEntry(2f,0.230f))
-        chartData.add(BarEntry(3f,0.300f))
-        chartData.add(BarEntry(4f,0.360f))
+        genderRef.get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val snapshot = task.result
+                var amritsar = snapshot.child("Amritsar").getValue<Int>()?.toFloat() ?: 0.0f
+                var jalandhar = snapshot.child("Jalandar").getValue<Int>()?.toFloat() ?: 0.0f
+                var bathinda = snapshot.child("Bhatinda").getValue<Int>()?.toFloat() ?: 0.0f
+                var kapulthas = snapshot.child("Kapulthas").getValue<Int>()?.toFloat() ?: 0.0f
+                Log.e("Firebase", "Error getting data1", task.exception)
 
-        val barDataSet = BarDataSet(chartData, "GENDER")
-        barDataSet.color = Color.parseColor("#994329EA")
-        barDataSet.isHighlightEnabled
-        barDataSet.highLightColor = Color.parseColor("#4329EA")
-        barDataSet.valueTextSize = 0.0f
+                val chartData = ArrayList<BarEntry>()
+                chartData.add(BarEntry(3f, bathinda))
+                chartData.add(BarEntry(2f, jalandhar))
+                chartData.add(BarEntry(4f, kapulthas))
+                chartData.add(BarEntry(1f, amritsar))
 
-        val barData = BarData(barDataSet)
-        barData.barWidth = 0.2f
-        chartView.setFitBars(true)
-        chartView.invalidate()
+                val barDataSet = BarDataSet(chartData, "LOCATION")
+                barDataSet.color = Color.parseColor("#994329EA")
+                barDataSet.isHighlightEnabled
+                barDataSet.highLightColor = Color.parseColor("#4329EA")
+                barDataSet.valueTextSize = 0.0f
 
-        val xAxis: XAxis = chartView.xAxis
-        xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.textSize = 15f
-        xAxis.labelCount =4
-        xAxis.textColor = Color.BLACK
-        xAxis.setDrawAxisLine(false)
-        xAxis.setDrawGridLines(false)
-        xAxis.valueFormatter=MyXAxis4Formatter()
+                val barData = BarData(barDataSet)
+                barData.barWidth = 0.2f
 
-        val left: YAxis = chartView.getAxisLeft()
-        val rightAxis: YAxis = chartView.axisRight
-        left.axisMinimum = -0.2f
-        rightAxis.isEnabled = false
-        left.isEnabled = false
+                val chartView = binding.chartView
 
-        chartView.description.text = ""
-        chartView.data = barData
-        chartView.animateXY(1000,1000)
+                chartView.setFitBars(true)
+                chartView.invalidate()
+
+                val xAxis: XAxis = chartView.xAxis
+                xAxis.position = XAxis.XAxisPosition.BOTTOM
+                xAxis.textSize = 15f
+                xAxis.labelCount = 4
+                xAxis.textColor = Color.BLACK
+                xAxis.setDrawAxisLine(false)
+                xAxis.setDrawGridLines(false)
+                xAxis.valueFormatter = MyXAxis4Formatter()
+
+                val left: YAxis = chartView.getAxisLeft()
+                val rightAxis: YAxis = chartView.axisRight
+                left.axisMinimum = -2000f
+                rightAxis.isEnabled = false
+                left.isEnabled = false
+
+                chartView.description.text = ""
+                chartView.data = barData
+                chartView.isScaleXEnabled = false
+                chartView.isScaleYEnabled = false
+                chartView.animateXY(1000, 1000)
+
+
+
+            } else {
+                Log.e("Firebase", "Error getting data", task.exception)
+            }
+
+        }
 
     }
 

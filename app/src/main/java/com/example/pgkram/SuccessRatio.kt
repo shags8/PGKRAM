@@ -92,6 +92,7 @@ class SuccessRatio : Fragment() {
         binding.chart3.data = barData
         binding.chart3.setVisibleXRangeMaximum(6f)
         binding.chart3.setVisibleXRangeMinimum(0f)
+        binding.chart3.isScaleXEnabled = false
         binding.chart3.invalidate()
         binding.chart3.animateXY(1000,1000)
 
@@ -145,6 +146,7 @@ class SuccessRatio : Fragment() {
         binding.chart4.data = barData
         binding.chart4.setVisibleXRangeMaximum(6f)
         binding.chart4.setVisibleXRangeMinimum(0f)
+        binding.chart4.isScaleXEnabled = false
         binding.chart4.invalidate()
         binding.chart4.animateXY(1000,1000)
 

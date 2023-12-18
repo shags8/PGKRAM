@@ -45,7 +45,7 @@ class MyYAxisFormatter : ValueFormatter() {
     private val days = listOf("0%", "25%", "50%", "100%")
 
     override fun getAxisLabel(value: Float, axis: AxisBase?): String? {
-        return String.format("%d%%", (value * 100).toInt())
+        return String.format("%d%%", (value*100).toInt())
     }
 }
 
@@ -102,10 +102,10 @@ class MyXAxis4Formatter : ValueFormatter() {
     override fun getAxisLabel(value: Float, axis: AxisBase?): String {
 
         return when (value) {
-            1.0f -> days[3]
-            2.0f -> days[2]
-            3.0f -> days[1]
-            4.0f -> days[0]
+            1.0f -> days[0]
+            2.0f -> days[1]
+            3.0f -> days[2]
+            4.0f -> days[3]
             else -> days.getOrNull(value.toInt()) ?: value.toString()
         }
         // return days.getOrNull(value.toInt()) ?: value.toString()
@@ -118,10 +118,10 @@ class MyXAxis5Formatter : ValueFormatter() {
     override fun getAxisLabel(value: Float, axis: AxisBase?): String {
 
         return when (value) {
-            1.0f -> days[3]
-            2.0f -> days[2]
-            3.0f -> days[1]
-            4.0f -> days[0]
+            1.0f -> days[0]
+            2.0f -> days[1]
+            3.0f -> days[2]
+            4.0f -> days[3]
             else -> days.getOrNull(value.toInt()) ?: value.toString()
         }
         // return days.getOrNull(value.toInt()) ?: value.toString()
@@ -142,5 +142,13 @@ class MyXAxis6Formatter : ValueFormatter() {
     }
 }
 
+class MyYAxis6Formatter : ValueFormatter() {
+    override fun getFormattedValue(value: Float, axis: AxisBase?): String {
+        // Round value to one decimal place
+        val roundedValue = String.format("%.1f", value)
 
+        // Add "%" symbol and return formatted string
+        return "$roundedValue%"
+    }
+}
 

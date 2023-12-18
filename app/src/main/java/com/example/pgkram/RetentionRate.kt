@@ -79,6 +79,7 @@ class RetentionRate : Fragment() {
 
         val lineData = LineData(lineDataSet)
         binding.chart5.data = lineData
+        binding.chart5.isScaleXEnabled = false
 
 
         val xAxis: XAxis = binding.chart5.xAxis
@@ -128,7 +129,7 @@ class RetentionRate : Fragment() {
 
         val lineData = LineData(lineDataSet)
         binding.chart6.data = lineData
-
+        binding.chart6.isScaleXEnabled = false
 
         val xAxis: XAxis = binding.chart6.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM

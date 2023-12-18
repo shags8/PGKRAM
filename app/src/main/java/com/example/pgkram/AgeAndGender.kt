@@ -3,6 +3,7 @@ package com.example.pgkram
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,10 +15,9 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import com.google.firebase.Firebase
-import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.analytics.analytics
-
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.getValue
+import kotlin.properties.Delegates
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,6 +26,13 @@ class AgeAndGender : Fragment() {
 
     lateinit var _binding: FragmentAgeAndGenderBinding
     private val binding get() = _binding!!
+
+    private val database = FirebaseDatabase.getInstance()
+    private val genderRef = database.getReference("Gender")
+    private var maleValue : Float = 0.0f
+    private var femaleValue :Float = 0.0f
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,54 +48,63 @@ class AgeAndGender : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        graph1()
+
+
         graph2()
-
-
-
-
+        graph1()
     }
 
     fun graph2(){
 
-        val chartData = ArrayList<BarEntry>()
-        chartData.add(BarEntry(1f, 0.665f))
-        chartData.add(BarEntry(2f,0.350f))
 
-        val barDataSet = BarDataSet(chartData, "GENDER")
-        barDataSet.color = Color.parseColor("#994329EA")
-        barDataSet.isHighlightEnabled
-        barDataSet.highLightColor = Color.parseColor("#4329EA")
-        barDataSet.valueTextSize = 0.0f
-
-        val barData = BarData(barDataSet)
-        barData.barWidth = 0.38f
-        binding.chart2.setFitBars(true)
-        binding.chart2.invalidate()
+        genderRef.get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val snapshot = task.result
+                femaleValue = snapshot.child("Female").getValue<Int>()?.toFloat() ?: 0.0f
+                maleValue = snapshot.child("Male").getValue<Int>()?.toFloat() ?: 0.0f
 
 
-        val xAxis: XAxis = binding.chart2.xAxis
-        xAxis.position = XAxisPosition.BOTTOM
-        xAxis.textSize = 10f
-        xAxis.labelCount =2
-        xAxis.textColor = Color.BLACK
-        xAxis.setDrawGridLines(false)
-        xAxis.valueFormatter=MyXAxis2Formatter()
+                val chartData = ArrayList<BarEntry>()
+                chartData.add(BarEntry(1f,maleValue))
+                chartData.add(BarEntry(2f,femaleValue))
 
-        val left: YAxis = binding.chart2.getAxisLeft()
-        val rightAxis: YAxis = binding.chart2.axisRight
-        rightAxis.isEnabled = false
-        left.labelCount = 3
-        left.axisMaximum = 1f
-        left.axisMinimum=0f
-        left.granularity=0.25f
-        left.isForceLabelsEnabled
-        left.valueFormatter = MyYAxisFormatter()
+                val barDataSet = BarDataSet(chartData, "GENDER")
+                barDataSet.color = Color.parseColor("#994329EA")
+                barDataSet.isHighlightEnabled
+                barDataSet.highLightColor = Color.parseColor("#4329EA")
+                barDataSet.valueTextSize = 0.0f
 
-        binding.chart2.description.text = ""
-        binding.chart2.data = barData
-        binding.chart2.animateXY(1000,1000)
+                val barData = BarData(barDataSet)
+                barData.barWidth = 0.38f
+                binding.chart2.setFitBars(true)
+                binding.chart2.invalidate()
 
+
+                val xAxis: XAxis = binding.chart2.xAxis
+                xAxis.position = XAxisPosition.BOTTOM
+                xAxis.textSize = 10f
+                xAxis.labelCount =2
+                xAxis.textColor = Color.BLACK
+                xAxis.setDrawGridLines(false)
+                xAxis.valueFormatter=MyXAxis2Formatter()
+
+                val left: YAxis = binding.chart2.getAxisLeft()
+                val rightAxis: YAxis = binding.chart2.axisRight
+                rightAxis.isEnabled = false
+                left.labelCount = 5
+                left.isForceLabelsEnabled
+
+                binding.chart2.description.text = ""
+                binding.chart2.data = barData
+                binding.chart2.isScaleXEnabled = false
+                binding.chart2.animateXY(2500,2500)
+
+
+
+            } else {
+                Log.e("Firebase", "Error getting data", task.exception)
+            }
+        }
 
     }
     fun graph1()
@@ -130,6 +146,7 @@ class AgeAndGender : Fragment() {
 
         binding.chart1.description.text = ""
         binding.chart1.data = barData
+        binding.chart1.isScaleXEnabled = false
         binding.chart1.animateXY(1000,1000)
 
     }

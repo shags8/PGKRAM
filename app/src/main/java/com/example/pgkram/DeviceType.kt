@@ -79,6 +79,7 @@ class DeviceType : Fragment() {
 
         binding.chart.description.text = ""
         binding.chart.data = barData
+        binding.chart.isScaleXEnabled = false
         binding.chart.animateXY(1000,1000)
 
 
