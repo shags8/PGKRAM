@@ -19,9 +19,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle1"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="wrap_content"
+        android:minHeight="120dp"
         tools:listitem="@layout/jobdesign"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal"/>
 
     <TextView

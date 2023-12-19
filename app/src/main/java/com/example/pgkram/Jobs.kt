@@ -71,7 +71,7 @@ class Jobs : Fragment() {
                     }
                     // Initialize adapter with initial job list
                     recyclerView1.adapter = JobAdapter(jobList)
-                    recyclerView2.adapter = JobAdapter(jobList)
+                    recyclerView2.adapter = JobAdapter2(jobList)
                     Log.d("JobAdapter5", "Fetching featured jobs from Firebase")
 
                 }

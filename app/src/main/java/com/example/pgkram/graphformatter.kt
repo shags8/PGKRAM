@@ -76,7 +76,7 @@ class MyYAxis2Formatter : ValueFormatter() {
     private val days = listOf("0%", "25%", "50%", "100%")
 
     override fun getAxisLabel(value: Float, axis: AxisBase?): String? {
-        return String.format("%.0f", value * 1000)
+        return String.format("%.0f", value*100)
     }
 }
 class LineFormatter : ValueFormatter() {

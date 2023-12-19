@@ -23,6 +23,8 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 import com.google.firebase.analytics.logEvent
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.getValue
 import java.util.Calendar
 
 
@@ -30,7 +32,6 @@ class RetentionRate : Fragment() {
 
     lateinit var _binding : FragmentRetentionRateBinding
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +57,7 @@ class RetentionRate : Fragment() {
     }
 
     fun graph1(){
+
 
         val xValues = ArrayList<String>()
         xValues.add("SEP 7,2023")
