@@ -14,12 +14,11 @@ import com.google.firebase.analytics.analytics
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var analytics: FirebaseAnalytics
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        analytics = Firebase.analytics
+
 
 
         val home = findViewById<ImageView>(R.id.home)

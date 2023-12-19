@@ -46,6 +46,7 @@ class DeviceType : Fragment() {
         val chartData = ArrayList<BarEntry>()
         chartData.add(BarEntry(1f, 0.665f))
         chartData.add(BarEntry(2f,0.350f))
+        chartData.add(BarEntry(3f,0.300f))
 
         val barDataSet = BarDataSet(chartData, "Device")
         barDataSet.color = Color.parseColor("#994329EA")
@@ -62,7 +63,7 @@ class DeviceType : Fragment() {
         val xAxis: XAxis = binding.chart.xAxis
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.textSize = 10f
-        xAxis.labelCount =2
+        xAxis.labelCount =3
         xAxis.textColor = Color.BLACK
         xAxis.setDrawGridLines(false)
         xAxis.valueFormatter=MyXAxis6Formatter()

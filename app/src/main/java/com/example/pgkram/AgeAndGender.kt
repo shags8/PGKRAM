@@ -75,6 +75,8 @@ class AgeAndGender : Fragment() {
                 val chartData = ArrayList<BarEntry>()
                 chartData.add(BarEntry(1f,maleValue))
                 chartData.add(BarEntry(2f,femaleValue))
+                chartData.add(BarEntry(3f,50000f))
+
 
                 val barDataSet = BarDataSet(chartData, "GENDER")
                 barDataSet.color = Color.parseColor("#994329EA")
@@ -91,7 +93,7 @@ class AgeAndGender : Fragment() {
                 val xAxis: XAxis = binding.chart2.xAxis
                 xAxis.position = XAxisPosition.BOTTOM
                 xAxis.textSize = 10f
-                xAxis.labelCount =2
+                xAxis.labelCount =3
                 xAxis.textColor = Color.BLACK
                 xAxis.setDrawGridLines(false)
                 xAxis.valueFormatter=MyXAxis2Formatter()

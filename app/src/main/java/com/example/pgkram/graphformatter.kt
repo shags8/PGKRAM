@@ -27,13 +27,14 @@ class MyXAxisFormatter : ValueFormatter() {
 
 class MyXAxis2Formatter : ValueFormatter() {
 
-    private val days = listOf("BOYS", "GIRLS")
+    private val days = listOf("BOYS", "GIRLS","TRANSGENDER")
 
     override fun getAxisLabel(value: Float, axis: AxisBase?): String {
 
         return when (value) {
             1.0f -> days[0]
             2.0f -> days[1]
+            3.0f -> days[2]
             else -> days.getOrNull(value.toInt()) ?: value.toString()
         }
         // return days.getOrNull(value.toInt()) ?: value.toString()
@@ -132,13 +133,14 @@ class MyXAxis5Formatter : ValueFormatter() {
 }
 class MyXAxis6Formatter : ValueFormatter() {
 
-    private val days = listOf("MOBILE", "DESKTOP")
+    private val days = listOf("MOBILE", "DESKTOP","OTHERS")
 
     override fun getAxisLabel(value: Float, axis: AxisBase?): String {
 
         return when (value) {
             1.0f -> days[0]
             2.0f -> days[1]
+            3.0f -> days[2]
             else -> days.getOrNull(value.toInt()) ?: value.toString()
         }
         // return days.getOrNull(value.toInt()) ?: value.toString()
