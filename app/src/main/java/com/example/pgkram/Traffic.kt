@@ -55,7 +55,10 @@ class Traffic : Fragment() {
                 var whatsapp = snapshot.child("Whatsapp").getValue<Int>()?.toFloat() ?: 0.0f
                 var google = snapshot.child("GoogleAds").getValue<Int>()?.toFloat() ?: 0.0f
                 var fb = snapshot.child("Facebook").getValue<Int>()?.toFloat() ?: 0.0f
-                var unknown = snapshot.child("Unknown").getValue<Int>()?.toFloat() ?: 0.0f
+                var unknown = snapshot.child("Others").getValue<Int>()?.toFloat() ?: 0.0f
+                var telegram = snapshot.child("Telegram").getValue<Int>()?.toFloat() ?: 0.0f
+                var youtube = snapshot.child("Youtube").getValue<Int>()?.toFloat() ?: 0.0f
+                var twitter = snapshot.child("Twitter").getValue<Int>()?.toFloat() ?: 0.0f
 
                 val chartView = binding.chartView
 
@@ -63,9 +66,12 @@ class Traffic : Fragment() {
                 chartData.add(BarEntry(1f, whatsapp))
                 chartData.add(BarEntry(2f,fb))
                 chartData.add(BarEntry(3f,google))
-                chartData.add(BarEntry(4f,unknown))
+                chartData.add(BarEntry(4f,telegram))
+                chartData.add(BarEntry(5f,youtube))
+                chartData.add(BarEntry(6f,twitter))
+                chartData.add(BarEntry(7f,unknown))
 
-                val barDataSet = BarDataSet(chartData, "GENDER")
+                val barDataSet = BarDataSet(chartData, "Traffic")
                 barDataSet.color = Color.parseColor("#994329EA")
                 barDataSet.isHighlightEnabled
                 barDataSet.highLightColor = Color.parseColor("#4329EA")
@@ -79,7 +85,7 @@ class Traffic : Fragment() {
                 val xAxis: XAxis = chartView.xAxis
                 xAxis.position = XAxis.XAxisPosition.BOTTOM
                 xAxis.textSize = 15f
-                xAxis.labelCount =4
+                xAxis.labelCount =7
                 xAxis.textColor = Color.BLACK
                 xAxis.setDrawAxisLine(false)
                 xAxis.setDrawGridLines(false)

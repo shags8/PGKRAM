@@ -113,7 +113,7 @@ class MyXAxis4Formatter : ValueFormatter() {
 }
 class MyXAxis5Formatter : ValueFormatter() {
 
-    private val days = listOf("Whatsapp", "Facebook","Google ads","Unknown")
+    private val days = listOf("Whatsapp", "Facebook","Google ads","Telegram","Youtube","Twitter","Others")
 
     override fun getAxisLabel(value: Float, axis: AxisBase?): String {
 
@@ -122,6 +122,9 @@ class MyXAxis5Formatter : ValueFormatter() {
             2.0f -> days[1]
             3.0f -> days[2]
             4.0f -> days[3]
+            5.0f -> days[4]
+            6.0f -> days[5]
+            7.0f -> days[6]
             else -> days.getOrNull(value.toInt()) ?: value.toString()
         }
         // return days.getOrNull(value.toInt()) ?: value.toString()

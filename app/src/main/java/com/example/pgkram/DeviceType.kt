@@ -47,7 +47,7 @@ class DeviceType : Fragment() {
         chartData.add(BarEntry(1f, 0.665f))
         chartData.add(BarEntry(2f,0.350f))
 
-        val barDataSet = BarDataSet(chartData, "GENDER")
+        val barDataSet = BarDataSet(chartData, "Device")
         barDataSet.color = Color.parseColor("#994329EA")
         barDataSet.isHighlightEnabled
         barDataSet.highLightColor = Color.parseColor("#4329EA")
