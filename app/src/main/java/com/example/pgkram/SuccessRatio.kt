@@ -44,6 +44,13 @@ class SuccessRatio : Fragment() {
         graph4()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        graph3()
+        graph4()
+    }
+
     fun graph3()
     {
         val chartData = ArrayList<BarEntry>()

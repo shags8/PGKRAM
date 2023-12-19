@@ -44,9 +44,17 @@ class Location : Fragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        graph1()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        graph1()
 
+    }
+    fun graph1(){
 
         genderRef.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -105,7 +113,6 @@ class Location : Fragment() {
             }
 
         }
-
     }
 
 }

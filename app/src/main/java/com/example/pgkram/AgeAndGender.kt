@@ -54,6 +54,14 @@ class AgeAndGender : Fragment() {
         graph1()
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        graph2()
+        graph1()
+
+    }
+
     fun graph2(){
 
 

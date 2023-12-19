@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="110dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="15dp"
+    app:cardElevation="25dp"
+    android:padding="8dp"
+    app:cardCornerRadius="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/jobicon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/icon" />
+            <TextView
+                android:id="@+id/jobtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:text="Product UI Design"/>
+
+            <ImageView
+                android:id="@+id/saveImageView"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/save" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/type1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/background"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:text="Full-time"/>
+
+            <TextView
+                android:id="@+id/type2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/background"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:text="On-site"/>
+
+            <TextView
+                android:id="@+id/type3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/background"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:text="Mid Level"/>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Here at Velstar, we don't just make websites, we create exceptional digital experiences "
+            android:autoSizeTextType="uniform"
+            android:maxEms="3"
+            android:ellipsize="end"
+            android:textSize="13sp"
+            android:padding="3dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"/>
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

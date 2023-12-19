@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Jobs"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Featured"
+        android:textSize="20dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle1"
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        tools:listitem="@layout/jobdesign"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recommended jobs for you"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/jobdesign"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
