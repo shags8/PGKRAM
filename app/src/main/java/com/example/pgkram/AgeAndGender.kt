@@ -31,6 +31,7 @@ class AgeAndGender : Fragment() {
     private val genderRef = database.getReference("Gender")
     private var maleValue : Float = 0.0f
     private var femaleValue :Float = 0.0f
+    private var transValue :Float = 0.0f
 
 
     override fun onCreateView(
@@ -70,12 +71,12 @@ class AgeAndGender : Fragment() {
                 val snapshot = task.result
                 femaleValue = snapshot.child("Female").getValue<Int>()?.toFloat() ?: 0.0f
                 maleValue = snapshot.child("Male").getValue<Int>()?.toFloat() ?: 0.0f
-
+                transValue = snapshot.child("Transgender").getValue<Int>()?.toFloat() ?: 0.0f
 
                 val chartData = ArrayList<BarEntry>()
                 chartData.add(BarEntry(1f,maleValue))
                 chartData.add(BarEntry(2f,femaleValue))
-                chartData.add(BarEntry(3f,50000f))
+                chartData.add(BarEntry(3f,transValue))
 
 
                 val barDataSet = BarDataSet(chartData, "GENDER")

@@ -26,8 +26,8 @@ class SuccessRatio : Fragment() {
     private val binding get() = _binding!!
 
     private val database = FirebaseDatabase.getInstance()
-    private val new = database.getReference("Retention/NewGraph/2023")
-    private val old = database.getReference("Retention/ReturningGraph/2023")
+    private val failure = database.getReference("Success/Failure")
+    private val success = database.getReference("Success/Success_data")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,21 +59,21 @@ class SuccessRatio : Fragment() {
     }
 
     fun graph3() {
-        old.get().addOnCompleteListener { task ->
+        success.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val snapshot = task.result
-                var jan = snapshot.child("Jan").getValue<Int>()?.toFloat() ?: 0.0f
-                var feb = snapshot.child("Feb").getValue<Int>()?.toFloat() ?: 0.0f
-                var mar = snapshot.child("Mar").getValue<Int>()?.toFloat() ?: 0.0f
-                var apr = snapshot.child("Apr").getValue<Int>()?.toFloat() ?: 0.0f
-                var may = snapshot.child("May").getValue<Int>()?.toFloat() ?: 0.0f
-                var jun = snapshot.child("Jun").getValue<Int>()?.toFloat() ?: 0.0f
-                var jul = snapshot.child("Jul").getValue<Int>()?.toFloat() ?: 0.0f
-                var aug = snapshot.child("Aug").getValue<Int>()?.toFloat() ?: 0.0f
-                var sep = snapshot.child("Sep").getValue<Int>()?.toFloat() ?: 0.0f
-                var oct = snapshot.child("Oct").getValue<Int>()?.toFloat() ?: 0.0f
-                var nov = snapshot.child("Nov").getValue<Int>()?.toFloat() ?: 0.0f
-                var dec = snapshot.child("Dec").getValue<Int>()?.toFloat() ?: 0.0f
+                var jan = snapshot.child("0").getValue<Int>()?.toFloat() ?: 0.0f
+                var feb = snapshot.child("1").getValue<Int>()?.toFloat() ?: 0.0f
+                var mar = snapshot.child("2").getValue<Int>()?.toFloat() ?: 0.0f
+                var apr = snapshot.child("3").getValue<Int>()?.toFloat() ?: 0.0f
+                var may = snapshot.child("4").getValue<Int>()?.toFloat() ?: 0.0f
+                var jun = snapshot.child("5").getValue<Int>()?.toFloat() ?: 0.0f
+                var jul = snapshot.child("6").getValue<Int>()?.toFloat() ?: 0.0f
+                var aug = snapshot.child("7").getValue<Int>()?.toFloat() ?: 0.0f
+                var sep = snapshot.child("8").getValue<Int>()?.toFloat() ?: 0.0f
+                var oct = snapshot.child("9").getValue<Int>()?.toFloat() ?: 0.0f
+                var nov = snapshot.child("10").getValue<Int>()?.toFloat() ?: 0.0f
+                var dec = snapshot.child("11").getValue<Int>()?.toFloat() ?: 0.0f
 
                 Log.d("Jobapr", "$apr")
 
@@ -136,21 +136,21 @@ class SuccessRatio : Fragment() {
 
     fun graph4() {
 
-        new.get().addOnCompleteListener { task ->
+        failure.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 val snapshot = task.result
-                var jan = snapshot.child("Jan").getValue<Int>()?.toFloat() ?: 0.0f
-                var feb = snapshot.child("Feb").getValue<Int>()?.toFloat() ?: 0.0f
-                var mar = snapshot.child("Mar").getValue<Int>()?.toFloat() ?: 0.0f
-                var apr = snapshot.child("Apr").getValue<Int>()?.toFloat() ?: 0.0f
-                var may = snapshot.child("May").getValue<Int>()?.toFloat() ?: 0.0f
-                var jun = snapshot.child("Jun").getValue<Int>()?.toFloat() ?: 0.0f
-                var jul = snapshot.child("Jul").getValue<Int>()?.toFloat() ?: 0.0f
-                var aug = snapshot.child("Aug").getValue<Int>()?.toFloat() ?: 0.0f
-                var sep = snapshot.child("Sep").getValue<Int>()?.toFloat() ?: 0.0f
-                var oct = snapshot.child("Oct").getValue<Int>()?.toFloat() ?: 0.0f
-                var nov = snapshot.child("Nov").getValue<Int>()?.toFloat() ?: 0.0f
-                var dec = snapshot.child("Dec").getValue<Int>()?.toFloat() ?: 0.0f
+                var jan = snapshot.child("0").getValue<Int>()?.toFloat() ?: 0.0f
+                var feb = snapshot.child("1").getValue<Int>()?.toFloat() ?: 0.0f
+                var mar = snapshot.child("2").getValue<Int>()?.toFloat() ?: 0.0f
+                var apr = snapshot.child("3").getValue<Int>()?.toFloat() ?: 0.0f
+                var may = snapshot.child("4").getValue<Int>()?.toFloat() ?: 0.0f
+                var jun = snapshot.child("5").getValue<Int>()?.toFloat() ?: 0.0f
+                var jul = snapshot.child("6").getValue<Int>()?.toFloat() ?: 0.0f
+                var aug = snapshot.child("7").getValue<Int>()?.toFloat() ?: 0.0f
+                var sep = snapshot.child("8").getValue<Int>()?.toFloat() ?: 0.0f
+                var oct = snapshot.child("9").getValue<Int>()?.toFloat() ?: 0.0f
+                var nov = snapshot.child("10").getValue<Int>()?.toFloat() ?: 0.0f
+                var dec = snapshot.child("11").getValue<Int>()?.toFloat() ?: 0.0f
 
 
                 val chartData = ArrayList<BarEntry>()

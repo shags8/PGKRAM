@@ -27,7 +27,7 @@ class MyXAxisFormatter : ValueFormatter() {
 
 class MyXAxis2Formatter : ValueFormatter() {
 
-    private val days = listOf("BOYS", "GIRLS","TRANSGENDER")
+    private val days = listOf("MALE", "FEMALE","TRANSGENDER")
 
     override fun getAxisLabel(value: Float, axis: AxisBase?): String {
 
@@ -77,7 +77,7 @@ class MyYAxis2Formatter : ValueFormatter() {
     private val days = listOf("0%", "25%", "50%", "100%")
 
     override fun getAxisLabel(value: Float, axis: AxisBase?): String? {
-        return String.format("%.0f", value*100)
+        return String.format("%.0f", value)
     }
 }
 class LineFormatter : ValueFormatter() {

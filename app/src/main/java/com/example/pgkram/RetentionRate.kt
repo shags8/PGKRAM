@@ -33,6 +33,10 @@ class RetentionRate : Fragment() {
     lateinit var _binding : FragmentRetentionRateBinding
     private val binding get() = _binding!!
 
+    private val database = FirebaseDatabase.getInstance()
+    private val new = database.getReference("Retention/NewGraph/2023")
+    private val old = database.getReference("Retention/ReturningGraph/2023")
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,101 +62,152 @@ class RetentionRate : Fragment() {
 
     fun graph1(){
 
-
-        val xValues = ArrayList<String>()
-        xValues.add("SEP 7,2023")
-        xValues.add("SEP 14,2023")
-        xValues.add("SEP 21,2023")
-
-        val yValues = ArrayList<Entry>()
-        yValues.add(Entry(1f, 0.22f))
-        yValues.add(Entry(2f, 0.34f))
-        yValues.add(Entry(3f, 0.30f))
-        yValues.add(Entry(4f, 0.42f))
-        yValues.add(Entry(5f, 0.15f))
-
-        val lineDataSet = LineDataSet(yValues, "Returning Users")
-
-        lineDataSet.lineWidth = 2.5f
-        lineDataSet.setDrawCircles(false)
-        lineDataSet.color = Color.parseColor("#4285F4")
-        lineDataSet.valueTextSize = 0.0f
-        lineDataSet.valueTextColor = Color.BLACK
-
-        val lineData = LineData(lineDataSet)
-        binding.chart5.data = lineData
-        binding.chart5.isScaleXEnabled = false
+        new.get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val snapshot = task.result
+                var jan = snapshot.child("Jan").getValue<Int>()?.toFloat() ?: 0.0f
+                var feb = snapshot.child("Feb").getValue<Int>()?.toFloat() ?: 0.0f
+                var mar = snapshot.child("Mar").getValue<Int>()?.toFloat() ?: 0.0f
+                var apr = snapshot.child("Apr").getValue<Int>()?.toFloat() ?: 0.0f
+                var may = snapshot.child("May").getValue<Int>()?.toFloat() ?: 0.0f
+                var jun = snapshot.child("Jun").getValue<Int>()?.toFloat() ?: 0.0f
+                var jul = snapshot.child("Jul").getValue<Int>()?.toFloat() ?: 0.0f
+                var aug = snapshot.child("Aug").getValue<Int>()?.toFloat() ?: 0.0f
+                var sep = snapshot.child("Sep").getValue<Int>()?.toFloat() ?: 0.0f
+                var oct = snapshot.child("Oct").getValue<Int>()?.toFloat() ?: 0.0f
+                var nov = snapshot.child("Nov").getValue<Int>()?.toFloat() ?: 0.0f
+                var dec = snapshot.child("Dec").getValue<Int>()?.toFloat() ?: 0.0f
 
 
-        val xAxis: XAxis = binding.chart5.xAxis
-        xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.textSize = 9f
-        xAxis.textColor = Color.BLACK
-        xAxis.labelRotationAngle = 50F
-        xAxis.labelCount=5
-        xAxis.isForceLabelsEnabled
-        xAxis.setDrawAxisLine(true)
-        xAxis.setDrawGridLines(false)
-        xAxis.valueFormatter = LineFormatter()
+                val yValues = ArrayList<Entry>()
+                yValues.add(Entry(1f, jan))
+                yValues.add(Entry(2f, feb))
+                yValues.add(Entry(3f, mar))
+                yValues.add(Entry(4f, apr))
+                yValues.add(Entry(5f, may))
+                yValues.add(Entry(6f, jun))
+                yValues.add(Entry(7f, jul))
+                yValues.add(Entry(8f, aug))
+                yValues.add(Entry(9f, sep))
+                yValues.add(Entry(10f, oct))
+                yValues.add(Entry(11f, nov))
+                yValues.add(Entry(12f, dec))
 
-        val left: YAxis = binding.chart5.axisLeft
-        val rightAxis: YAxis = binding.chart5.axisRight
-        rightAxis.isEnabled = false
-        left.setDrawGridLines(false)
-        left.valueFormatter = MyYAxis2Formatter()
-        left.axisMinimum = 0f
-        left.axisMaximum = 1f
-        binding.chart5.animateY(1000)
-        binding.chart5.description.isEnabled = false
+                val lineDataSet = LineDataSet(yValues, "Returning Users")
+
+                lineDataSet.lineWidth = 2.5f
+                lineDataSet.setDrawCircles(false)
+                lineDataSet.color = Color.parseColor("#4285F4")
+                lineDataSet.valueTextSize = 0.0f
+                lineDataSet.valueTextColor = Color.BLACK
+
+                val lineData = LineData(lineDataSet)
+                binding.chart5.data = lineData
+                binding.chart5.isScaleXEnabled = false
+
+
+                val xAxis: XAxis = binding.chart5.xAxis
+                xAxis.position = XAxis.XAxisPosition.BOTTOM
+                xAxis.textSize = 9f
+                xAxis.textColor = Color.BLACK
+                xAxis.labelRotationAngle = 50F
+                xAxis.labelCount=6
+                binding.chart5.setVisibleXRangeMaximum(6f)
+                binding.chart5.setVisibleXRangeMinimum(0f)
+                xAxis.isForceLabelsEnabled
+                xAxis.setDrawAxisLine(true)
+                xAxis.setDrawGridLines(false)
+                xAxis.valueFormatter = MyXAxis3Formatter()
+
+                val left: YAxis = binding.chart5.axisLeft
+                val rightAxis: YAxis = binding.chart5.axisRight
+                rightAxis.isEnabled = false
+                left.setDrawGridLines(false)
+                left.valueFormatter = MyYAxis2Formatter()
+                binding.chart5.animateY(1000)
+                binding.chart5.description.isEnabled = false
+
+            }
+            else {
+                Log.e("Firebase", "Error getting data", task.exception)
+            }
+        }
+
 
     }
 
     fun graph2(){
 
-        val xValues = ArrayList<String>()
-        xValues.add("SEP 7,2023")
-        xValues.add("SEP 14,2023")
-        xValues.add("SEP 21,2023")
+        old.get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val snapshot = task.result
+                var jan = snapshot.child("Jan").getValue<Int>()?.toFloat() ?: 0.0f
+                var feb = snapshot.child("Feb").getValue<Int>()?.toFloat() ?: 0.0f
+                var mar = snapshot.child("Mar").getValue<Int>()?.toFloat() ?: 0.0f
+                var apr = snapshot.child("Apr").getValue<Int>()?.toFloat() ?: 0.0f
+                var may = snapshot.child("May").getValue<Int>()?.toFloat() ?: 0.0f
+                var jun = snapshot.child("Jun").getValue<Int>()?.toFloat() ?: 0.0f
+                var jul = snapshot.child("Jul").getValue<Int>()?.toFloat() ?: 0.0f
+                var aug = snapshot.child("Aug").getValue<Int>()?.toFloat() ?: 0.0f
+                var sep = snapshot.child("Sep").getValue<Int>()?.toFloat() ?: 0.0f
+                var oct = snapshot.child("Oct").getValue<Int>()?.toFloat() ?: 0.0f
+                var nov = snapshot.child("Nov").getValue<Int>()?.toFloat() ?: 0.0f
+                var dec = snapshot.child("Dec").getValue<Int>()?.toFloat() ?: 0.0f
 
-        val yValues = ArrayList<Entry>()
-        yValues.add(Entry(1f, 0.22f))
-        yValues.add(Entry(2f, 0.74f))
-        yValues.add(Entry(3f, 0.50f))
-        yValues.add(Entry(4f, 0.82f))
-        yValues.add(Entry(5f, 0.15f))
 
-        val lineDataSet = LineDataSet(yValues, "New Users")
+                val yValues = ArrayList<Entry>()
+                yValues.add(Entry(1f, jan))
+                yValues.add(Entry(2f, feb))
+                yValues.add(Entry(3f, mar))
+                yValues.add(Entry(4f, apr))
+                yValues.add(Entry(5f, may))
+                yValues.add(Entry(6f, jun))
+                yValues.add(Entry(7f, jul))
+                yValues.add(Entry(8f, aug))
+                yValues.add(Entry(9f, sep))
+                yValues.add(Entry(10f, oct))
+                yValues.add(Entry(11f, nov))
+                yValues.add(Entry(12f, dec))
 
-        lineDataSet.lineWidth = 2.5f
-        lineDataSet.setDrawCircles(false)
-        lineDataSet.color = Color.parseColor("#4285F4")
-        lineDataSet.valueTextSize = 0.0f
-        lineDataSet.valueTextColor = Color.BLACK
+                val lineDataSet = LineDataSet(yValues, "New Users")
 
-        val lineData = LineData(lineDataSet)
-        binding.chart6.data = lineData
-        binding.chart6.isScaleXEnabled = false
+                lineDataSet.lineWidth = 2.5f
+                lineDataSet.setDrawCircles(false)
+                lineDataSet.color = Color.parseColor("#4285F4")
+                lineDataSet.valueTextSize = 0.0f
+                lineDataSet.valueTextColor = Color.BLACK
 
-        val xAxis: XAxis = binding.chart6.xAxis
-        xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.textSize = 9f
-        xAxis.textColor = Color.BLACK
-        xAxis.labelRotationAngle = 50F
-        xAxis.labelCount=5
-        xAxis.isForceLabelsEnabled
-        xAxis.setDrawAxisLine(true)
-        xAxis.setDrawGridLines(false)
-        xAxis.valueFormatter = LineFormatter()
+                val lineData = LineData(lineDataSet)
+                binding.chart6.data = lineData
+                binding.chart6.isScaleXEnabled = false
 
-        val left: YAxis = binding.chart6.axisLeft
-        val rightAxis: YAxis = binding.chart6.axisRight
-        rightAxis.isEnabled = false
-        left.setDrawGridLines(false)
-        left.valueFormatter = MyYAxis2Formatter()
-        left.axisMinimum = 0f
-        left.axisMaximum = 1f
-        binding.chart6.animateY(1000)
-        binding.chart6.description.text = ""
+
+                val xAxis: XAxis = binding.chart6.xAxis
+                xAxis.position = XAxis.XAxisPosition.BOTTOM
+                xAxis.textSize = 9f
+                xAxis.textColor = Color.BLACK
+                xAxis.labelRotationAngle = 50F
+                xAxis.labelCount=6
+                binding.chart6.setVisibleXRangeMaximum(6f)
+                binding.chart6.setVisibleXRangeMinimum(0f)
+                xAxis.isForceLabelsEnabled
+                xAxis.setDrawAxisLine(true)
+                xAxis.setDrawGridLines(false)
+                xAxis.valueFormatter = MyXAxis3Formatter()
+
+                val left: YAxis = binding.chart6.axisLeft
+                val rightAxis: YAxis = binding.chart6.axisRight
+                rightAxis.isEnabled = false
+                left.setDrawGridLines(false)
+                left.valueFormatter = MyYAxis2Formatter()
+                binding.chart6.animateY(1000)
+                binding.chart6.description.isEnabled = false
+
+            }
+            else {
+                Log.e("Firebase", "Error getting data", task.exception)
+            }
+        }
 
     }
 
